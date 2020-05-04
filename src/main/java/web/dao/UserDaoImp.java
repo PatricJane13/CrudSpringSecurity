@@ -48,4 +48,8 @@ public class UserDaoImp implements UserDao {
       query.executeUpdate();
    }
 
+   @Override
+   public void deleteUser(User user) {
+      sessionFactory.getCurrentSession().delete(user);
+   }
 }

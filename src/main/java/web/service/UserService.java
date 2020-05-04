@@ -12,4 +12,5 @@ public interface UserService {
     User getUserByNameAndSeries(String name, int series);
     User getUserById(Long id);
     void updateUser(User user);
+    public void deleteUser(User user);
 }

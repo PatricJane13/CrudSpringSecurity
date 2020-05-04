@@ -18,13 +18,22 @@
             <td><c:out value="${message.firstName}"/></td>
             <td><c:out value="${message.lastName}"/></td>
             <td><c:out value="${message.email}"/></td>
-            <td><a href="/update">Update</a></td>
-            <td><a href="/delete">Delete</a></td>
+            <td>
+                <form action="/getUpdate">
+                    <input hidden type="text" name="id" value="${message.id}">
+                    <button>Update</button>
+                </form>
+            </td>
+            <td>
+                <form action="/delete">
+                    <input hidden type="text" name="id" value="${message.id}">
+                    <button>Delete</button>
+                </form>
+            </td>
         </tr>
     </c:forEach>
 </table>
-
-<form action="/add" method="put">
+<form action="/add" method="post">
     Firs Name:<br>
     <input type="text" name="firstName"><br><br>
     Last Name:<br>

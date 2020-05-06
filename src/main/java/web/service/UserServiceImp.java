@@ -28,12 +28,6 @@ public class UserServiceImp implements UserService {
 
    @Transactional
    @Override
-   public User getUserByNameAndSeries(String name, int series){
-      return userDao.getUserByNameAndSeries(name,series);
-   }
-
-   @Transactional
-   @Override
    public User getUserById(Long id){
       return userDao.getUserById(id);
    }

@@ -27,11 +27,6 @@ public class UserDaoImp implements UserDao {
    }
 
    @Override
-   public User getUserByNameAndSeries(String name, int series) {
-      return null;
-   }
-
-   @Override
    public User getUserById(Long id){
       TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("FROM User WHERE id = :id");
       query.setParameter("id", id);

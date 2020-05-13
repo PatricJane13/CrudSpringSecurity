@@ -19,7 +19,9 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void add(User user) {
+
         sessionFactory.getCurrentSession().save(user);
+        sessionFactory.getCurrentSession().save(user.getRoles().get(0));
     }
 
     @Override

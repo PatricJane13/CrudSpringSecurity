@@ -27,18 +27,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
                                         Authentication authentication) throws IOException, ServletException {
         User user = (User) authentication.getPrincipal();
         List<Role> roles = user.getRoles();
-        for (Role role : roles) {
-            if (role.getAuthority().equals("ADMIN")) {
-                httpServletResponse.sendRedirect("/admin/all");
-                return;
-            } else if (role.getAuthority().equals("USER")) {
-                httpServletResponse.sendRedirect("/user");
-                return;
-            } else {
-                httpServletResponse.sendRedirect("/login");
-                return;
-            }
+        Role role = roles.get(0);
+        if (role.getAuthority().equals("ADMIN")) {
+            httpServletResponse.sendRedirect("/admin/all");
+        } else if (role.getAuthority().equals("USER")) {
+            httpServletResponse.sendRedirect("/user");
+        } else {
+            httpServletResponse.sendRedirect("/login");
         }
     }
-
 }

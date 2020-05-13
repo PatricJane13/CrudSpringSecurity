@@ -36,10 +36,10 @@ public class AllUsersController {
 
     @PostMapping(value = "add")
     public String addUser(@RequestParam("firstName") String firstName,
-                        @RequestParam("lastName") String lastName,
-                        @RequestParam("email") String email,
-                        @RequestParam("password") String password,
-                        @RequestParam("role") String role, HttpServletResponse response) throws IOException {
+                          @RequestParam("lastName") String lastName,
+                          @RequestParam("email") String email,
+                          @RequestParam("password") String password,
+                          @RequestParam("role") String role) throws IOException {
         List<Role> list = new ArrayList<>();
         list.add(new Role(role.toUpperCase()));
         userService.add(new User(firstName, lastName, email, password, list));
@@ -48,17 +48,17 @@ public class AllUsersController {
 
     @PostMapping(value = "update")
     public String updateUser(@RequestParam("id") Long id,
-                           @RequestParam("newFirstName") String newFirstName,
-                           @RequestParam("newLastName") String newLastName,
-                           @RequestParam("newEmail") String newEmail,
-                           @RequestParam("newPassword") String password, HttpServletResponse response) throws IOException {
+                             @RequestParam("newFirstName") String newFirstName,
+                             @RequestParam("newLastName") String newLastName,
+                             @RequestParam("newEmail") String newEmail,
+                             @RequestParam("newPassword") String password) throws IOException {
         User user = new User(id, newFirstName, newLastName, newEmail, password);
         userService.updateUser(user);
         return "redirect:/admin/all";
     }
 
     @GetMapping(value = "delete")
-    public String deleteUser(@RequestParam("id") String id, HttpServletResponse response) throws IOException {
+    public String deleteUser(@RequestParam("id") String id) throws IOException {
         User user = userService.getUserById(Long.parseLong(id));
         userService.deleteUser(user);
         return "redirect:/admin/all";
@@ -66,7 +66,7 @@ public class AllUsersController {
 
     @PostMapping(value = "updateRole")
     public String updateRole(@RequestParam("selectRole") String role,
-                           @RequestParam("id") Long id, HttpServletResponse response) throws IOException {
+                             @RequestParam("id") Long id) throws IOException {
         userService.updateUserRole(role, id);
         return "redirect:/admin/all";
     }
